@@ -10,3 +10,9 @@ Féléves követelmények ismertetése, szükséges szoftverek telepítése.
 JavaScript alapok. Egyszerű nyelvi kvízjáték készítése HTML, CSS és JavaScript felhasználásával.
 
 - Projekt: [Nyelvi kvíz](https://github.com/aron123/jatek-prototipusok-2023/blob/main/language-quiz/)
+
+## 3. hét
+Game Design Document, Phaser 3 keretrendszer alapjai: sprite-ok, ütközésvizsgálat, kamera effektek. 
+
+- [Asset-ek letöltése](https://github.com/aron123/jatek-prototipusok-2023/raw/main/road-crossing-assets.zip)
+- Projekt
