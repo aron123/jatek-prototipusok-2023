@@ -22,3 +22,9 @@ Audio kezelés, tween animáció, sprite interakciók.
 
 - [Játék template letöltése](https://github.com/aron123/jatek-prototipusok-2023/raw/main/spanish-learning-game-template.zip)
 - Projekt: [Nyelvtanuló játék](https://github.com/aron123/jatek-prototipusok-2023/blob/main/spanish-learning-game/)
+
+## 5. hét
+Spritesheet animáció, időzített események, több scene kezelése.
+
+- [Játék template letöltése](https://github.com/aron123/jatek-prototipusok-2023/raw/main/virtual-pet-game-template.zip)
+- Projekt: „Pou”-stílusú játék
