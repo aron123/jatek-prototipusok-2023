@@ -1,4 +1,4 @@
-/// <reference path="./types/index.d.ts" />
+/// <reference path="../types/index.d.ts" />
 
 class GameScene extends Phaser.Scene {
     constructor(title) {
@@ -11,24 +11,14 @@ class GameScene extends Phaser.Scene {
             fun: 100
         };
 
+        this.statsDecay = {
+            health: -5,
+            fun: -2
+        };
+
         this.selectedItem = null;
 
         this.uiBlocked = false;
-    }
-
-    preload() {
-        this.load.image('apple', 'assets/apple.png');
-        this.load.image('background', 'assets/backyard.png');
-        this.load.image('candy', 'assets/candy.png');
-        this.load.image('duck', 'assets/rubber_duck.png');
-        this.load.image('rotate', 'assets/rotate.png');
-
-        this.load.spritesheet('pet', 'assets/pet.png', {
-            frameWidth: 97,
-            frameHeight: 83,
-            margin: 1,
-            spacing: 1
-        });
     }
 
     create() {
@@ -37,7 +27,16 @@ class GameScene extends Phaser.Scene {
         this.bg.on('pointerdown', (pointer) => this.placeItem(pointer));
 
         this.pet = this.add.sprite(40, 220, 'pet', 0).setInteractive();
+        this.pet.setDepth(1);
         this.input.setDraggable(this.pet);
+
+        this.anims.create({
+            key: 'eat',
+            duration: 500,
+            frames: this.anims.generateFrameNames('pet', { frames: [ 1, 2, 3 ] }),
+            frameRate: 7,
+            yoyo: true
+        });
         
         this.input.on('drag', (pointer, gameObj, dragX, dragY) => {
             gameObj.x = dragX;
@@ -45,6 +44,21 @@ class GameScene extends Phaser.Scene {
         });
 
         this.createUi();
+
+        this.healthText = this.add.text(20, 20, `Health: ${this.stats.health}`, {
+            font: '24px Arial'
+        });
+        this.funText = this.add.text(180, 20, `Fun: ${this.stats.fun}`, {
+            font: '24px Arial'
+        });
+
+        this.statsDecayEvent = this.time.addEvent({
+            delay: 1000,
+            repeat: -1,
+            callback: () => {
+                this.updateStats(this.statsDecay);
+            }
+        });
     }
 
     createUi() {
@@ -86,7 +100,7 @@ class GameScene extends Phaser.Scene {
     }
 
     placeItem(pointer) {
-        if (!this.selectedItem) {
+        if (!this.selectedItem || this.uiBlocked) {
             return;
         }
 
@@ -94,11 +108,24 @@ class GameScene extends Phaser.Scene {
 
         const newItem = this.add.sprite(pointer.worldX, pointer.worldY,
              this.selectedItem.texture.key);
-        
-        this.updateStats(this.selectedItem.getData('stats'));
 
-        this.resetUi();
-        this.uiBlocked = false;
+        this.tweens.add({
+            targets: this.pet,
+            duration: 500,
+            x: newItem.x,
+            y: newItem.y,
+            onComplete: () => {
+                this.updateStats(this.selectedItem.getData('stats'));
+
+                this.pet.on('animationcomplete', () => {
+                    newItem.destroy();
+                    this.resetUi();
+                    this.uiBlocked = false;
+                });
+
+                this.pet.play('eat');
+            }
+        });
     }
 
     rotatePet(item) {
@@ -125,15 +152,27 @@ class GameScene extends Phaser.Scene {
     updateStats(stats) {
         this.stats.health += stats.health;
         this.stats.fun += stats.fun;
-        console.log(this.stats);
+
+        if (this.stats.health <= 0 || this.stats.fun <= 0) {
+            this.stats.health = 0;
+            this.stats.fun = 0;
+            this.gameOver();
+        }
+        
+        this.healthText.setText(`Health: ${this.stats.health}`);
+        this.funText.setText(`Fun: ${this.stats.fun}`);
+    }
+
+    gameOver() {
+        this.resetUi();
+        this.uiBlocked = true;
+        this.pet.setFrame(4);
+        this.statsDecayEvent.destroy();
+
+        this.time.addEvent({
+            delay: 2000,
+            repeat: 0,
+            callback: () => this.scene.start('home')
+        });
     }
 }
-
-const gameScene = new GameScene('game');
-
-const game = new Phaser.Game({
-    type: Phaser.AUTO,
-    width: 360,
-    height: 640,
-    scene: gameScene
-});
