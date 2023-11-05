@@ -23,8 +23,14 @@ Audio kezelés, tween animáció, sprite interakciók.
 - [Játék template letöltése](https://github.com/aron123/jatek-prototipusok-2023/raw/main/spanish-learning-game-template.zip)
 - Projekt: [Nyelvtanuló játék](https://github.com/aron123/jatek-prototipusok-2023/blob/main/spanish-learning-game/)
 
-## 5. hét
+## 5-6. hét
 Spritesheet animáció, időzített események, több scene kezelése.
 
 - [Játék template letöltése](https://github.com/aron123/jatek-prototipusok-2023/raw/main/virtual-pet-game-template.zip)
-- Projekt: „Pou”-stílusú játék
+- Projekt: [Virtuális kisállat nevelde](https://github.com/aron123/jatek-prototipusok-2023/blob/main/virtual-pet-game/)
+
+## 9-10. hét
+Fizikai motor, testekre ható erők, ütközés- és átfedésvizsgálat, platformer mechanika, object pooling.
+
+- [Játék template letöltése](https://github.com/aron123/jatek-prototipusok-2023/raw/main/platformer-game-template.zip)
+- Projekt: Platformer játék
