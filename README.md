@@ -33,4 +33,5 @@ Spritesheet animáció, időzített események, több scene kezelése.
 Fizikai motor, testekre ható erők, ütközés- és átfedésvizsgálat, platformer mechanika, object pooling.
 
 - [Játék template letöltése](https://github.com/aron123/jatek-prototipusok-2023/raw/main/platformer-game-template.zip)
+- [Pályadefiníció letöltése](https://raw.githubusercontent.com/aron123/jatek-prototipusok-2023/main/platformer-game-lvl-data.json)
 - Projekt: [Platformer játék](https://github.com/aron123/jatek-prototipusok-2023/blob/main/platformer-game/)
