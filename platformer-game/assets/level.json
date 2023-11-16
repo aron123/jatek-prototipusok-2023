@@ -1,0 +1,65 @@
+{
+    "player": {
+        "x": 180,
+        "y": 500
+    },
+    "enemy": {
+        "x": 35,
+        "y": 45
+    },
+    "spawner": {
+        "speed": 100,
+        "interval": 3000,
+        "lifespan": 5000
+    },
+    "platforms": [
+        {
+            "x": 72,
+            "y": 450,
+            "tileCount": 6,
+            "texture": "block"
+        },
+        {
+            "x": 0,
+            "y": 330,
+            "tileCount": 8,
+            "texture": "block"
+        },
+        {
+            "x": 72,
+            "y": 210,
+            "tileCount": 8,
+            "texture": "block"
+        },
+        {
+            "x": 0,
+            "y": 90,
+            "tileCount": 7,
+            "texture": "block"
+        },
+        {
+            "x": 0,
+            "y": 560,
+            "tileCount": 1,
+            "texture": "ground"
+        }
+    ],
+    "fires": [
+        {
+            "x": 24,
+            "y": 536
+        },
+        {
+            "x": 6,
+            "y": 306
+        },
+        {
+            "x": 337,
+            "y": 187
+        },
+        {
+            "x": 139,
+            "y": 426
+        }
+    ]
+}
